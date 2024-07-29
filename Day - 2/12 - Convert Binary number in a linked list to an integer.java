@@ -17,6 +17,8 @@ class ListNode {
 
 
 class Solution {
+
+  // if head is pointing to MSB
   public int getDecimalValue(ListNode head) {
     int sum = 0;
     while (head != null)  {
@@ -25,5 +27,36 @@ class Solution {
       head = head.next;
     }
     return sum;
+  }
+
+
+  // if head is pointing to the LSB
+
+  private int pow(int n)  {
+    int ans = 1;
+    for (int i=1; i <= n; i++) {
+      ans *= 2;
+    }
+    return ans;
+  }
+
+  public int getDecimalValue2(ListNode head)  {
+    ListNode temp = head;
+    int count = 0;
+    while (temp != null)  {
+      count++;
+    }
+    count--;  // decrement count to use it as an index
+
+    int ans = 0;
+    temp = head;
+    while (count >= 0)  {
+      if (temp.val == 1)  {
+        ans += pow(count);
+      }
+      temp = temp.next;
+      count--;
+    }
+    return ans; // return the final decimal value
   }
 }
